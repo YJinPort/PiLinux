@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     printf("Resolution : %d x %d\n", bmpInfoHeader.biWidth, bmpInfoHeader.biHeight);
     printf("Bit Count : %d\n", bmpInfoHeader.biBitCount);     /* 픽셀당 비트 수(색상) */
     printf("Image Size : %d\n", imageSize);
-   
+ 	printf("practice\n");  
     inimg = (ubyte*)malloc(sizeof(ubyte)*imageSize);
     outimg = (ubyte*)malloc(sizeof(ubyte)*imageSize*xFactor*yFactor);
     fread(inimg, sizeof(ubyte), imageSize, fp);
