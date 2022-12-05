@@ -97,8 +97,18 @@ int main(int argc, char** argv)
 		padimg[((bmpInfoHeader.biWidth+1)*elemSize)+y*padRow+2] = inimg[((bmpInfoHeader.biWidth-1)*elemSize)+(y-1)*size+2];
 	}
 
+	for(x = elemSize; x < (bmpInfoHeader.biWidth+1)*elemSize; x+=elemSize) {
+		padimg[x+0] = inimg[x-elemSize+0];
+		padimg[x+1] = inimg[x-elemSize+1];
+		padimg[x+2] = inimg[x-elemSize+2];
+
+		padimg[x+(bmpInfoHeader.biHeight+1)*padRow+0] = inimg[x-elemSize+(bmpInfoHeader.biHeight-1)*size+0];
+		padimg[x+(bmpInfoHeader.biHeight+1)*padRow+1] = inimg[x-elemSize+(bmpInfoHeader.biHeight-1)*size+1];
+		padimg[x+(bmpInfoHeader.biHeight+1)*padRow+2] = inimg[x-elemSize+(bmpInfoHeader.biHeight-1)*size+2];
+	}
+
     for(y = 1; y < bmpInfoHeader.biHeight+1; y++) {
-        for(x = elemSize; x < (bmpInfoHeader.biWidth+1) * elemSize; x+=elemSize) {
+        for(x = 1; x < (bmpInfoHeader.biWidth+1) * elemSize; x+=elemSize) {
             for(z = 0; z < elemSize; z++) {
                 float sum = 0.0;
                 for(int i = -1; i < 2; i++) {
